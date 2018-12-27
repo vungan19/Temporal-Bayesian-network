@@ -39,8 +39,10 @@ ecg_feature_extraction <- function(dataname,channel,fs) {
 d<- get(dataname)
 d<- d[[channel]]
 t <-(1:length(d)-1)/fs
+
 bf<- butter(3,0.5/(fs/2),type=c("low"))
 c <- filtfilt(bf,d)
+
 d <- d-c
 
 bf<- butter(6,17/(fs/2),type=c("low"))
